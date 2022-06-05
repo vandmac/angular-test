@@ -55,6 +55,10 @@ export class WorkersService {
         return this.workers
     }
 
+    getWorkerById(id: number): Worker | undefined {
+        return this.workers.find(worker => worker.id === id)
+    }
+
     addNewWorker(newWorker: Worker): void {
         this.workers.push(newWorker)
     }

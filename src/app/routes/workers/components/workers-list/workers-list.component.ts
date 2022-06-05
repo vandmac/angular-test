@@ -32,7 +32,7 @@ export class WorkersListComponent implements OnInit {
     edit(worker: Worker): void {
         this.selectedWorker = worker
 
-        this.router.navigate(['/workers/details'])
+        this.router.navigate(['/workers/details', worker.id])
 
         // this.workerForm.patchValue({
         //     workerName: worker.firstName,

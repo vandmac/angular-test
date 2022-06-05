@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccessControllGuard } from '@shared/guards/access-control.guard';
 import { HomeResolver } from '@shared/resolvers/home.resolver';
+import { WorkerResolver } from '@shared/resolvers/worker.resolver';
 
 import { MainContentComponent } from './routes/main-content/main-content.component';
 import { MoviesComponent } from './routes/movies/movies.component';
@@ -39,7 +40,8 @@ const routes: Routes = [
         },
       },
       {
-        path: 'details',
+        path: 'details/:id',
+        resolve: { worker: WorkerResolver },
         component: WorkerDetailsComponent,
         data: {
           title: 'Worker Details Page'

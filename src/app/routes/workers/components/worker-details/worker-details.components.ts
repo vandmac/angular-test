@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Worker } from '@shared/models/worker.model';
@@ -24,12 +24,14 @@ export class WorkerDetailsComponent implements OnInit {
     constructor(
         private workersService: WorkersService,
         private fb: FormBuilder,
-        private router: Router
+        private router: Router,
+        private route: ActivatedRoute
     ) {
     }
 
     ngOnInit(): void {
         this.initForm()
+        console.log('Show Data :', this.route.snapshot.data)
     }
 
     initForm(): void {
