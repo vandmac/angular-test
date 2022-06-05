@@ -1,14 +1,3 @@
-main {
-    padding: 20px;
-    background-color: burlywood;
-}
-
-h1 {
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-
 .date {
     font-size: 24px;
 
@@ -43,67 +32,4 @@ h1 {
 
 .list-header {
     margin-bottom: 20px;
-}
-
-.worker {
-    display: flex;
-    margin: 10px 0;
-
-    span {
-        padding: 6px 0;
-        width: 200px;
-        margin-right: 10px;
-    }
-
-    &.first {
-        background-color: gray;
-        border-top: 1px solid red;
-    }
-
-    &.last {
-        background-color: gray;
-        border-bottom: 1px solid red;
-    }
-
-
-    .short {
-        width: 42px;
-    }
-
-    .img {
-        height: 70px;
-        width: 70px;
-        object-fit: cover;
-        border-radius: 4%;
-        margin-right: 20px;
-    }
-
-    button {
-        width: 40px;
-        height: 40px;
-        text-align: center;
-        background-color: green;
-        border-radius: 10px;
-    }
-
-}
-
-.form-worker {
-    display: flex;
-    flex-direction: column;
-
-    h4 {
-        margin-bottom: 30px;
-    }
-
-    button {
-        width: 80px;
-        margin: 30px;
-    }
-
-    span {
-        margin-top: 30px;
-    }
-
-
 }

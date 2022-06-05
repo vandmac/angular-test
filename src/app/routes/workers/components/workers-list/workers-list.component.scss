@@ -1,0 +1,47 @@
+h3 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.worker {
+    display: flex;
+    margin: 10px 0;
+
+    span {
+        padding: 6px 0;
+        width: 200px;
+        margin-right: 10px;
+    }
+
+    &.first {
+        background-color: gray;
+        border-top: 1px solid red;
+    }
+
+    &.last {
+        background-color: gray;
+        border-bottom: 1px solid red;
+    }
+
+
+    .short {
+        width: 42px;
+    }
+
+    .img {
+        height: 70px;
+        width: 70px;
+        object-fit: cover;
+        border-radius: 4%;
+        margin-right: 20px;
+    }
+
+    button {
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        background-color: green;
+        border-radius: 10px;
+    }
+
+}

@@ -1,0 +1,14 @@
+<h3 class="list-header">List of Workers from Poland</h3>
+<ol>
+    <li *ngFor="let worker of workers; index as idx; first as isFirst; last as isLast; odd as isOdd; even as isEven"
+        [ngClass]="{'first': isFirst, 'last': isLast }" class="worker">
+        <span class="short">Nr. {{idx}}</span>
+        <span>Name: {{ worker.firstName }}</span>
+        <span> {{ worker.placeOfOrigin | cityPrefix}}</span>
+        <span [color]="isOdd ? 'yellow': ''" appEmailColor>Email: {{ worker.email}}</span>
+        <span>Years Worked: {{worker.yearsWorked}}</span>
+        <img class="img" [data]="worker" appImgExperience alt="Image">
+        <!-- <span *appShow="isEven">YET</span> -->
+        <button (click)="edit(worker)">Edit</button>
+    </li>
+</ol>

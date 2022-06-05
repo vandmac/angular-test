@@ -1,0 +1,31 @@
+<form class="form-worker" [formGroup]="workerForm" (ngSubmit)="onSubmit(workerForm.valid)">
+    <h3> Worker </h3>
+    <label>
+        Name:
+        <input formControlName="workerName" name="workerName" type="text" />
+    </label>
+
+    <label>
+        Last Name:
+        <input formControlName="workerLastName" name="workerLastName" type="text" />
+    </label>
+
+    <label>
+        Email:
+        <input formControlName="workerEmail" name="workerEmail" type="text" />
+    </label>
+
+    <label>
+        Home city:
+        <input formControlName="workerPlaceOfOrigin" name="workerPlaceOfOrigin" type="text" />
+    </label>
+
+    <label>
+        Years worked:
+        <input formControlName="workerYearsWorked" name="workerYearsWorked" type="number" min="0" />
+    </label>
+
+    <button type="submit" #sumbitBtn>Add Worker</button>
+
+    <span>{{ workerForm.value | json}} {{ workerForm.valid | json}}</span>
+</form>
