@@ -1,0 +1,83 @@
+<main>
+    <h1> Hello guys :)</h1>
+
+    <!-- <app-item itemTitle="New Title" (tmpOutput)="handleClick($event)"></app-item>
+
+    <p [ngClass]="{'text-green': toggleGreenText , 'font-bold': !toggleGreenText}">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius aliquid esse laborum non? Cum cumque eos
+        reiciendis,
+        vitae, perferendis voluptatem dicta soluta, suscipit similique quasi fugit itaque molestiae sint. Corrupti?
+    </p> -->
+
+
+
+    <!-- <input class="if-input" type="number" [(ngModel)]="inputValue"> -->
+
+    <!-- 
+    <ng-container [ngSwitch]="inputValue">
+        <app-square *ngSwitchCase="1" [size]="small"></app-square>
+
+        <app-square *ngSwitchCase="2" [size]="medium"></app-square>
+
+        <app-square *ngSwitchCase="3" [size]="big"></app-square>
+    </ng-container> -->
+
+
+    <h3 class="list-header">List of Workers from Poland</h3>
+    <ol>
+        <li *ngFor="let worker of workers; index as idx; first as isFirst; last as isLast; odd as isOdd; even as isEven"
+            [ngClass]="{'first': isFirst, 'last': isLast }" class="worker">
+            <span class="short">Nr. {{idx}}</span>
+            <span>Name: {{ worker.firstName }}</span>
+            <span> {{ worker.placeOfOrigin | cityPrefix}}</span>
+            <span [color]="isOdd ? 'yellow': ''" appEmailColor>Email: {{ worker.email}}</span>
+            <span>Years Worked: {{worker.yearsWorked}}</span>
+            <img class="img" [data]="worker" appImgExperience alt="Image">
+            <!-- <span *appShow="isEven">YET</span> -->
+            <button (click)="edit(worker)">Edit</button>
+        </li>
+    </ol>
+
+
+    <form class="form-worker" [formGroup]="workerForm" (ngSubmit)="onSubmit(workerForm.valid)">
+        <h4> New Worker </h4>
+        <label>
+            Name:
+            <input formControlName="workerName" name="workerName" type="text" />
+        </label>
+
+        <label>
+            Last Name:
+            <input formControlName="workerLastName" name="workerLastName" type="text" />
+        </label>
+
+        <label>
+            Email:
+            <input formControlName="workerEmail" name="workerEmail" type="text" />
+        </label>
+
+        <label>
+            Home city:
+            <input formControlName="workerPlaceOfOrigin" name="workerPlaceOfOrigin" type="text" />
+        </label>
+
+        <label>
+            Years worked:
+            <input formControlName="workerYearsWorked" name="workerYearsWorked" type="number" min="0" />
+        </label>
+
+        <button type="submit" #sumbitBtn>Add Worker</button>
+
+        <!-- <span>{{ workerForm.value | json}} {{ workerForm.valid | json}}</span> -->
+    </form>
+
+
+
+
+    <!-- <div class="date">
+        <p>Today is: {{ newDate | date:'short' }}</p>
+        <p>{{ {name: 'seweryn', lastName: 'Wadowski', prof: 'JS developer'} | json}}</p>
+        <p>{{ [1, 15, 22, 5, 17, 34, 100] | slice:2:5 }}</p>
+    </div> -->
+
+</main>
