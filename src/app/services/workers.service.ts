@@ -3,6 +3,10 @@ import { Injectable } from "@angular/core";
 import { Worker } from "@shared/models/worker.model";
 
 
+// API KEY
+// 84e7317b
+// const API_URL = 'http://www.omdbapi.com/?apikey=84e7317b&'
+
 @Injectable({
     providedIn: 'root'
 })

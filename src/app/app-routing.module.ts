@@ -50,9 +50,9 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'movies/:id',
+    path: 'movies',
+    loadChildren: () => import('./routes/movies/movies.module').then(m => m.MoviesModule),
     canActivate: [AccessControllGuard],
-    component: MoviesComponent,
     data: {
       title: 'Movie Page'
     },

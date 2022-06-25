@@ -14,6 +14,7 @@ export class MoviesComponent implements OnInit {
     console.log('Path Params :', this.route.snapshot.params)
 
     console.log('Path Query Params :', this.route.snapshot.queryParams)
+
   }
 
 }

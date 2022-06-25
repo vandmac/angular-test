@@ -11,9 +11,6 @@ import { WorkersService } from 'src/app/services/workers.service';
     styleUrls: ['./worker-details.components.scss']
 })
 export class WorkerDetailsComponent implements OnInit {
-
-
-
     workerForm: FormGroup;
     selectedWorker: Worker | null = null
 
@@ -30,17 +27,22 @@ export class WorkerDetailsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.initForm()
-        console.log('Show Data :', this.route.snapshot.data)
+        const { worker } = this.route.snapshot.data
+        this.selectedWorker = worker;
+
+        // console.log('Show Data :', this.route.snapshot.data)
+        this.initForm(worker)
+
     }
 
-    initForm(): void {
+    initForm(worker?: Worker): void {
+
         this.workerForm = this.fb.group({
-            workerName: ['', Validators.required],
-            workerLastName: [''],
-            workerEmail: [''],
-            workerPlaceOfOrigin: [''],
-            workerYearsWorked: [, Validators.required]
+            workerName: [worker?.firstName, Validators.required],
+            workerLastName: [worker?.lastName],
+            workerEmail: [worker?.email],
+            workerPlaceOfOrigin: [worker?.placeOfOrigin],
+            workerYearsWorked: [worker?.yearsWorked, Validators.required]
 
         })
     }
