@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Observable, of } from "rxjs";
 
 import { Worker } from "@shared/models/worker.model";
 
@@ -11,6 +12,8 @@ import { Worker } from "@shared/models/worker.model";
     providedIn: 'root'
 })
 export class WorkersService {
+
+    workersLength: number;
 
     private workers: Worker[] = [
         {
@@ -55,8 +58,16 @@ export class WorkersService {
         }
     ]
 
-    getWorkers(): Worker[] {
-        return this.workers
+    // getWorkers(): Worker[] {
+    //     return this.workers
+    // }
+
+    getWorkerLength(): number {
+        return this.workersLength
+    }
+
+    getWorkers$(): Observable<Worker[]> {
+        return of(this.workers);
     }
 
     getWorkerById(id: number): Worker | undefined {

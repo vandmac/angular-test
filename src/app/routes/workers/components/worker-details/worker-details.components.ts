@@ -15,7 +15,7 @@ export class WorkerDetailsComponent implements OnInit {
     selectedWorker: Worker | null = null
 
     get workersLength(): number {
-        return this.workersService.getWorkers.length
+        return this.workersService.getWorkers$.length
     }
 
     constructor(

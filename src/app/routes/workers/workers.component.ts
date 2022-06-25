@@ -1,7 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
-import { Worker } from '@shared/models/worker.model';
 import { WorkersService } from 'src/app/services/workers.service';
 
 // export enum Size {

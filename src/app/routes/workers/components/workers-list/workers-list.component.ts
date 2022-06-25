@@ -25,7 +25,10 @@ export class WorkersListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.workers = this.workersService.getWorkers()
+        this.workersService.getWorkers$().pipe()
+            .subscribe(data => {
+                this.workers = data
+            })
 
     }
 
