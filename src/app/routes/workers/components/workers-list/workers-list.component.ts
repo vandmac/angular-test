@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
-import { map } from "rxjs";
+import { filter, map, Subscription } from "rxjs";
 
 import { Worker } from '@shared/models/worker.model';
 import { WorkersService } from 'src/app/services/workers.service';
@@ -11,11 +11,12 @@ import { WorkersService } from 'src/app/services/workers.service';
     templateUrl: './workers-list.component.html',
     styleUrls: ['./workers-list.component.scss']
 })
-export class WorkersListComponent implements OnInit {
+export class WorkersListComponent implements OnInit, OnDestroy {
 
 
     workers: Worker[] = [];
     selectedWorker: Worker | null = null
+    subscriptions: Subscription = new Subscription()
 
 
     constructor(
@@ -26,8 +27,9 @@ export class WorkersListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.workersService.getWorkers$()
+        const sub = this.workersService.getWorkers$()
             .pipe(
+                filter((data) => data.length > 0),
                 map((workers) => {
                     return workers.map(item => {
                         item.firstName = item.firstName.toLowerCase()
@@ -38,6 +40,13 @@ export class WorkersListComponent implements OnInit {
                 this.workers = data
             })
 
+        this.subscriptions.add(sub)
+
+    }
+
+    ngOnDestroy(): void {
+        console.log('Unsubscribe')
+        this.subscriptions.unsubscribe()
     }
 
     edit(worker: Worker): void {
