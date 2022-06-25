@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
+import { map } from "rxjs";
 
 import { Worker } from '@shared/models/worker.model';
 import { WorkersService } from 'src/app/services/workers.service';
@@ -25,7 +26,14 @@ export class WorkersListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.workersService.getWorkers$().pipe()
+        this.workersService.getWorkers$()
+            .pipe(
+                map((workers) => {
+                    return workers.map(item => {
+                        item.firstName = item.firstName.toLowerCase()
+                        return item
+                    })
+                }))
             .subscribe(data => {
                 this.workers = data
             })

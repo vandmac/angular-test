@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Observable, of, tap } from "rxjs";
 
 import { Worker } from "@shared/models/worker.model";
 
@@ -67,7 +67,7 @@ export class WorkersService {
     }
 
     getWorkers$(): Observable<Worker[]> {
-        return of(this.workers);
+        return of(this.workers).pipe(tap(workers => this.workersLength = workers.length));
     }
 
     getWorkerById(id: number): Worker | undefined {
