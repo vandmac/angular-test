@@ -6,7 +6,7 @@ import { MoviesComponent } from "./movies.component";
 
 export const routes = [
     {
-        path: ':id',
+        path: '',
         component: MoviesComponent,
     }
 ]
@@ -14,7 +14,8 @@ export const routes = [
 @NgModule({
     declarations: [MoviesComponent],
     imports: [CommonModule, RouterModule.forChild(routes)],
-    exports: []
+    exports: [],
+    providers: [MoviesModule]
 })
 
 export class MoviesModule { }

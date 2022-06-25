@@ -1,40 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+
+import { MoviesService } from 'src/app/services/movies.service';
 
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss']
 })
-export class MoviesComponent implements OnInit {
+export class MoviesComponent implements OnInit, OnDestroy {
 
-  testObservable$: Observable<any> = new Observable(subscriber => {
-    subscriber.next('HI Guys :)')
+  subscriptions: Subscription = new Subscription()
 
-    setTimeout(() => {
-      subscriber.complete()
-    }, 2000)
-  })
-
-
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private moviesService: MoviesService) { }
 
   ngOnInit(): void {
-    console.log('Path Params :', this.route.snapshot.params)
-    console.log('Path Query Params :', this.route.snapshot.queryParams)
+    // console.log('Path Params :', this.route.snapshot.params)
+    // console.log('Path Query Params :', this.route.snapshot.queryParams)
 
-    // this.testObservable.subscribe({
-    //   next: (data) => { console.log('Data from Observable :', data) },
-    //   error: (error) => console.log(error),
-    //   complete: () => console.log('Complete Observable')
-    // })
+    const sub = this.moviesService.getMoviesByName$('lord')
+      .subscribe(movies => console.log(movies))
 
+    this.subscriptions.add(sub)
+  }
 
-    this.testObservable$.subscribe(data => {
-      console.log('Other way :', data)
-    })
-
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
   }
 
 }
