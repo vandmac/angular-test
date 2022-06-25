@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { ApiSearchResponce, Movie } from "@shared/models/movie.model";
 import { Observable } from "rxjs";
 
 // API KEY
@@ -11,7 +12,7 @@ export class MoviesService {
 
     constructor(private http: HttpClient) { }
 
-    getMoviesByName$(title: string): Observable<any> {
-        return this.http.get(`${API_URL}s=${title}`)
+    getMoviesByName$(title: string): Observable<ApiSearchResponce> {
+        return this.http.get(`${API_URL}s=${title}`) as Observable<ApiSearchResponce>
     }
 }

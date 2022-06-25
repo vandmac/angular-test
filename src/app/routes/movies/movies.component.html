@@ -1,1 +1,13 @@
-<p>movies works!</p>
+<input type="text" [(ngModel)]="search" (ngModelChange)="onChange($event)" />
+
+
+<ng-container *ngIf="movies$ | async as movies else emptyState">
+
+    <p *ngFor="let movie of movies">{{ movie.Title }}</p>
+
+
+</ng-container>
+
+<ng-template #emptyState>
+    <h2>You need to type some Movie Title</h2>
+</ng-template>
