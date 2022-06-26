@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, take, map } from 'rxjs';
 
 @Component({
     selector: 'app-main-content',
@@ -11,7 +11,10 @@ import { Observable, Subject } from 'rxjs';
 export class MainContentComponent implements OnInit {
 
     subject = new Subject()
+    behaviorSubject = new BehaviorSubject<number>(8)
+
     counter = 0
+    counterBS = 0
 
     constructor(
         private route: ActivatedRoute,
@@ -30,10 +33,13 @@ export class MainContentComponent implements OnInit {
             complete: () => { console.log('Done') }
         })
 
+
+        this.behaviorSubject.subscribe((data) => console.log('BS tick :', data))
+
     }
 
 
-    onClickNext(): void {
+    onClickNextS(): void {
         this.counter += 1
 
         if (this.counter > 8) {
@@ -49,9 +55,24 @@ export class MainContentComponent implements OnInit {
 
     }
 
-    onClickFinish(): void {
+    onClickNextBS(): void {
+        this.counterBS += 2
+
+        this.behaviorSubject.next(this.counterBS)
+    }
+
+    onClickFinishS(): void {
         this.counter = 0
         this.subject.complete()
+    }
+
+
+    createNewSubscription(): void {
+        this.behaviorSubject
+            .pipe(
+                take(3),
+                map((counterBS: number) => counterBS * 2.4))
+            .subscribe(data => console.log('New sub :', data))
     }
 
 }

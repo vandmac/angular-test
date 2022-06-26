@@ -1,8 +1,21 @@
-<h1>Hello in my new APP</h1>
+<h1>Subject and BehaviorSubject</h1>
 
 
-<button (click)="onClickNext()">Next Tick</button>
+<div class="subjects">
 
-<br />
+    <div>
+        <h5>Subject RXJ</h5>
+        <button (click)="onClickNextS()">Next Tick</button>
+        <br />
+        <button (click)="onClickFinishS()">Finish</button>
+    </div>
 
-<button (click)="onClickFinish()">Finish</button>
+
+    <div>
+        <h5>Behavior Subject RXJ</h5>
+        <button (click)="onClickNextBS()">Next Tick</button>
+        <br />
+        <button (click)="createNewSubscription()">Create New Subscription</button>
+    </div>
+
+</div>
