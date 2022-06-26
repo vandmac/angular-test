@@ -1,10 +1,26 @@
-<input type="text" [(ngModel)]="search" (ngModelChange)="onChange($event)" />
-
+<div class="search">
+    <input type="text" [(ngModel)]="search" (ngModelChange)="onChange($event)" />
+</div>
 
 <ng-container *ngIf="movies$ | async as movies else emptyState">
 
-    <p *ngFor="let movie of movies">{{ movie.Title }}</p>
+    <div class="movies">
 
+        <div *ngFor="let movie of movies" class="movie">
+            <header>
+                <h3>{{movie.Title}}</h3>
+            </header>
+
+            <img alt="Img" [src]="movie.Poster !=='N/A' ? movie.Poster : 'https://via.placeholder.com/150' " />
+
+            <div>
+                <h4>{{movie.Type}}</h4>
+                <p>{{movie.Year}}</p>
+            </div>
+
+        </div>
+
+    </div>
 
 </ng-container>
 

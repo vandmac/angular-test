@@ -27,10 +27,11 @@ export class MoviesComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe()
   }
 
-
   onChange(inputValue: string): void {
     const sub = this.moviesService.getMoviesByName$(inputValue)
-      .pipe(map(res => res.Search))
+      .pipe(
+        map(res => res.Search),
+      )
       .subscribe(movies => this.movies$ = of(movies))
 
     this.subscriptions.add(sub)

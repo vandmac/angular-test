@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { ApiSearchResponce, Movie } from "@shared/models/movie.model";
+import { ApiSearchResponce } from "@shared/models/movie.model";
 import { Observable } from "rxjs";
 
 // API KEY
